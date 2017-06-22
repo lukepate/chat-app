@@ -1,6 +1,6 @@
 import React from 'react';
-import './index.css';
 import Form from './Form';
+import './index.css';
 
 const Message = ({author, text}) => (
   <div className="Message">
@@ -11,14 +11,14 @@ const Message = ({author, text}) => (
 
 const List = ({messages}) => (
   <div className="MessagePane-List">
-    { messages.map(({id, author, text}) => <Message key={id} author={author} text={text}/>) }
+    {messages.map(({id, author, text}) => <Message key={id} author={author} text={text} />)}
   </div>
 );
 
-const MessagePane = ( {messages}) => (
+const MessagePane = ({messages, onSendMessage}) => (
   <div className="MessagePane">
-    <List messages={messages}/>
-    <Form />
+    <List messages={messages} />
+    <Form onSend={onSendMessage}/>
   </div>
 );
 
@@ -27,7 +27,8 @@ MessagePane.defaultProps = {
 };
 
 MessagePane.propTypes = {
-  messages: React.PropTypes.array.isRequired
+  messages: React.PropTypes.array.isRequired,
+  onSendMessage: React.PropTypes.func.isRequired
 };
 
 export default MessagePane;
